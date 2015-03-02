@@ -5,11 +5,15 @@
 		<title>Portfolio</title>
 		<script type="text/javascript" src="assets/js/angular.min.js"></script>
 		<script type="text/javascript" src="app/app.js"></script>
+		<link rel="stylesheet" href="assets/css/main.css">
 	</head>
 	
 	<body>
 		<div ng-controller="PortfolioController as portfolio">
-			<h1>{{ portfolio.work.name }}</h1>
+			<!--<h1>{{ portfolio.work.name }}</h1>-->
+			<div class="main-bg">
+				<div id="logo"></div>
+			</div>
 		</div>
 	</body>
 </html>
