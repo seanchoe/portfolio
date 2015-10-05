@@ -25,21 +25,95 @@ mark, audio, video {
     vertical-align: baseline;
 }
 
-html, body, .wrapper {
+address, article, aside, div, footer, header, hgroup, layer, main, nav, section {
+	display: block;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+html, body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+}
+
+*, body {
 	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+body {
+	font-family: "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
+	overflow: hidden;
 }
 
 .wrapper {
+	display: flex;
 	flex: 1 1 auto;
 	flex-direction: row;
 	min-width: 960px;
+	height: 100vh;
 }
 
 .sidebar {
 	flex: 0 0 250px;
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid #e5e5e5;
+	padding-left: 8px;
+	position: relative;
+}
+
+.sidebar > .title {
+	text-align: center;
+	flex: 0 0 auto;
+	padding: 20px 0;
+	color: #2FB1FF;
+	position: relative;
+}
+
+.sidebar > .title > img {
+	margin-right: 10px;
+}
+
+.sidebar > .title > h2, .sidebar > .title > h3 {
+	font-weight: 300;
+}
+
+.sidebar > .title > h2 {
+	font-size: 16px;
+	letter-spacing: 0.9em;
+	margin-top: 0.8em;
+	margin-bottom: 0.6em;
+}
+
+.sidebar > .title > h3 {
+	font-size: 11px;
+	letter-spacing: 1.2em;
+}
+
+.sidebar > .navigation-wrapper {
+	flex: 1 1 0px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+	height: 100%;
+}
+
+.sidebar .navigation {
+	flex: 1 0 auto;
+}
+
+.sidebar .navigation ul.company {
+	padding-left: 16px;
+}
+
+.sidebar .navigation ul.work {
+	padding-left: 16px;
 }
 
 .main { 

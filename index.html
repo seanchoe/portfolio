@@ -4,16 +4,37 @@
 		<meta charset="utf-8">
 		<title>Portfolio</title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
 		<link rel="stylesheet" href="css/main.css">
 	</head>
 	
 	<body>
-		<div class="wrapper" ng-controller="PortfolioController as portfolio">
+		<div class="wrapper" ng-controller="NavigationController">
 			<div class="sidebar">
-				<!--<h1>{{ portfolio.work.name }}</h1>-->
-			</div>
+				<div class="title">
+					<img src="images/sidebar_logo.svg" alt="logo" />
+					<h2>SEAN CHOE</h2>
+					<h3>PORTFOLIO</h3>
+				</div>
+				<div class="navigation-wrapper">
+					<div class="navigation">
+						<ul class="company">
+							<li ng-repeat="company in companies">
+								<h3>{{ company.name }}</h3>
+								<ul class="work">
+									<li ng-repeat="work in company.works">
+										<a href="#{{ work.link }}"><h4>{{ work.name }}</h4></a>
+										<span class="work-year">{{ work.year }}</span>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div><!-- .navigation -->
+				</div><!-- .navigation-wrapper -->
+			</div><!-- .sidebar -->
 			<div class="main">
+				<div ng-view></div>
 			</div>
 		</div>
 	</body>
