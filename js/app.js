@@ -4,28 +4,28 @@ var companies = [
 		name: 'ZERODESKTOP',
 		works: [
 			{
-				name: 'BLOCKS',
+				name: 'Blocks',
 				year: '2014 - 2015',
 				link: 'blocks'
 			},
 			{
-				name: 'QUALITYTIME',
-				year: '2014 - 2015',
+				name: 'QualityTime',
+				year: '2014',
 				link: 'qualitytime'
 			},
 			{
-				name: 'DINNERTIME PLUS',
-				year: '2014 - 2015',
+				name: 'DinnerTime Plus',
+				year: '2013',
 				link: 'dinnertimeplus'
 			},
 			{
-				name: 'MIIPC',
-				year: '2014 - 2015',
+				name: 'MiiPC',
+				year: '2012 - 2013',
 				link: 'miipc'
 			},
 			{
-				name: 'ZEROPC',
-				year: '2014 - 2015',
+				name: 'ZeroPC',
+				year: '2012 - 2013',
 				link: 'zeropc'
 			}
 		]
@@ -34,8 +34,8 @@ var companies = [
 		name: 'FOMOLA',
 		works: [
 			{
-				name: 'BLOGSY',
-				year: '2014 - 2015',
+				name: 'Blogsy',
+				year: '2010 - 2012',
 				link: 'blogsy'
 			}
 		]
@@ -44,8 +44,8 @@ var companies = [
 		name: 'GOOGLE DEVELOPER GROUP',
 		works: [
 			{
-				name: 'DEVELOPER FESTIVAL X',
-				year: '2014 - 2015',
+				name: 'Developer Festival X',
+				year: '2012',
 				link: 'dfx'
 			}
 		]
@@ -54,8 +54,8 @@ var companies = [
 		name: 'PRIVATE WORKS',
 		works: [
 			{
-				name: 'THE VALLEY',
-				year: '2014 - 2015',
+				name: 'The Valley',
+				year: '2010',
 				link: 'thevalley'
 			}
 		]

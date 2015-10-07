@@ -64,6 +64,7 @@ body {
 	flex-direction: column;
 	border-right: 1px solid #e5e5e5;
 	padding-left: 8px;
+	padding-bottom: 16px;
 	position: relative;
 }
 
@@ -109,11 +110,40 @@ body {
 }
 
 .sidebar .navigation ul.company {
-	padding-left: 16px;
+	padding-left: 8px;
 }
 
 .sidebar .navigation ul.work {
+	padding-left: 8px;
+}
+
+.sidebar .company-name {
+	font-size: 12px;
+	color: #9f9f9f;
 	padding-left: 16px;
+	margin-top: 32px;
+	display: block;
+	line-height: 0;
+}
+
+.sidebar a.work-link {
+	text-decoration: none;
+	color: #1c1c1c;
+}
+
+.sidebar a.work-link:hover {
+	color: #2FB1FF;
+}
+
+.sidebar .work-title {
+	font-size: 17px;
+	margin: 12px 0 2px 0;
+}
+
+.sidebar .work-year {
+	font-size: 10px;
+	color: #606060;
+	display: block;
 }
 
 .main { 

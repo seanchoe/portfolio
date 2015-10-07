@@ -21,10 +21,10 @@
 					<div class="navigation">
 						<ul class="company">
 							<li ng-repeat="company in companies">
-								<h3>{{ company.name }}</h3>
+								<h3 class="company-name">{{ company.name }}</h3>
 								<ul class="work">
 									<li ng-repeat="work in company.works">
-										<a href="#{{ work.link }}"><h4>{{ work.name }}</h4></a>
+										<a class="work-link" href="#{{ work.link }}"><h4 class="work-title">{{ work.name }}</h4></a>
 										<span class="work-year">{{ work.year }}</span>
 									</li>
 								</ul>
