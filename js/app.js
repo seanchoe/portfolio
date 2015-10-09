@@ -89,6 +89,15 @@ portfolioApp.config(function($routeProvider) {
     }) 
 });
 
-portfolioApp.controller('NavigationController', function($scope) {
+portfolioApp.controller('NavigationController', function($scope, $location) {
 	$scope.companies = companies;
+	
+	$scope.isActive = function(viewLocation) {
+		if ($location.path() == viewLocation) {
+			return "active";
+		}
+		else {
+			return "";
+		}
+	}
 });

@@ -132,6 +132,10 @@ body {
 }
 
 .sidebar a.work-link:hover {
+	color: #797979;
+}
+
+.sidebar a.work-link.active {
 	color: #2FB1FF;
 }
 
