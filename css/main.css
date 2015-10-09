@@ -46,7 +46,7 @@ html, body {
 }
 
 body {
-	font-family: "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
 	overflow: hidden;
 }
 
@@ -79,12 +79,9 @@ body {
 	margin-right: 10px;
 }
 
-.sidebar > .title > h2, .sidebar > .title > h3 {
-	font-weight: 300;
-}
-
 .sidebar > .title > h2 {
 	font-size: 16px;
+	font-weight: 400;
 	letter-spacing: 0.9em;
 	margin-top: 0.8em;
 	margin-bottom: 0.6em;
@@ -92,6 +89,7 @@ body {
 
 .sidebar > .title > h3 {
 	font-size: 11px;
+	font-weight: 600;
 	letter-spacing: 1.2em;
 }
 
@@ -171,7 +169,7 @@ body {
 
 .content h1 {
 	color: #686868;
-	font-size: 44px;
+	font-size: 64px;
 	font-weight: lighter;
 	text-align: center;
 	margin: 8px 0 32px 0;
