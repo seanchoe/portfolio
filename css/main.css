@@ -54,7 +54,7 @@ body {
 	display: flex;
 	flex: 1 1 auto;
 	flex-direction: row;
-	min-width: 960px;
+	min-width: 740px;
 	height: 100vh;
 }
 
@@ -64,7 +64,6 @@ body {
 	flex-direction: column;
 	border-right: 1px solid #e5e5e5;
 	padding-left: 8px;
-	padding-bottom: 16px;
 	position: relative;
 }
 
@@ -101,12 +100,11 @@ body {
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
-	min-height: 0;
-	height: 100%;
 }
 
 .sidebar .navigation {
 	flex: 1 0 auto;
+	padding-bottom: 16px;
 }
 
 .sidebar .navigation ul.company {
@@ -150,6 +148,38 @@ body {
 	display: block;
 }
 
-.main { 
+.main {
 	flex: 1 1 0;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+	
+.main > .content-wrapper {
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 32px ;
+}
+
+.main > .content-wrapper > .content {
+	flex: 1 1 auto;
+	padding: 0 32px;
+	max-width: 680px;
+}
+
+.content h1 {
+	color: #686868;
+	font-size: 44px;
+	font-weight: lighter;
+	text-align: center;
+	margin: 8px 0 32px 0;
+}
+
+.content p {
+	color: #1b1b1b;
+	font-size: 14px;
+	line-height: 1.4em;
+	padding: 16px 0;
 }
