@@ -63,14 +63,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	border-right: 1px solid #e5e5e5;
-	padding-left: 8px;
 	position: relative;
 }
 
 .sidebar > .title {
 	text-align: center;
 	flex: 0 0 auto;
-	padding: 20px 0;
+	padding: 20px 0 16px 12px;
 	color: #2FB1FF;
 	position: relative;
 }
@@ -102,24 +101,24 @@ body {
 
 .sidebar .navigation {
 	flex: 1 0 auto;
-	padding-bottom: 16px;
-}
-
-.sidebar .navigation ul.company {
-	padding-left: 8px;
+	padding-top: 16px;
 }
 
 .sidebar .navigation ul.work {
-	padding-left: 8px;
+	padding: 8px 0 16px 32px;
+	border-top: 1px solid #e5e5e5;
+	margin-bottom: 32px;
+}
+
+.navigation ul.work > li {
+	padding: 6px 0;
 }
 
 .sidebar .company-name {
 	font-size: 12px;
 	color: #9f9f9f;
-	padding-left: 16px;
-	margin-top: 32px;
-	display: block;
-	line-height: 0;
+	padding-left: 32px;
+	text-transform: uppercase;
 }
 
 .sidebar a.work-link {
@@ -137,7 +136,6 @@ body {
 
 .sidebar .work-title {
 	font-size: 17px;
-	margin: 12px 0 2px 0;
 }
 
 .sidebar .work-year {
@@ -172,12 +170,31 @@ body {
 	font-size: 64px;
 	font-weight: lighter;
 	text-align: center;
-	margin: 8px 0 32px 0;
+	margin: 8px 0 16px 0;
+}
+
+.content .info-wrapper {
+	color: #606060;
+	text-align: right;
+	margin-bottom: 16px;
+}
+
+.content .company-name, .content .work-year {
+	display: block;
+	padding: 4px 0;
+}
+
+.content .company-name {
+	font-size: 16px;
+}
+
+.content .work-year {
+	font-size: 12px;
 }
 
 .content p {
 	color: #1b1b1b;
-	font-size: 14px;
+	font-size: 18px;
 	line-height: 1.4em;
 	padding: 16px 0;
 }

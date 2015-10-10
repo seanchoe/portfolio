@@ -1,98 +1,172 @@
 var portfolioApp = angular.module('portfolioApp', ['ngRoute']);
+
+var blocksObj = {
+	name: 'Blocks',
+	year: '2014 - 2015',
+	link: 'blocks'
+};
+var qualityTimeObj = {
+	name: 'QualityTime',
+	year: '2014',
+	link: 'qualitytime'
+};
+var dinnerTimeObj = {
+	name: 'DinnerTime Plus',
+	year: '2013',
+	link: 'dinnertimeplus'
+};
+var miiPcObj = {
+	name: 'MiiPC',
+	year: '2012 - 2013',
+	link: 'miipc'
+};
+var zeroPcObj = {
+	name: 'ZeroPC',
+	year: '2012 - 2013',
+	link: 'zeropc'
+};
+var blogsyObj = {
+	name: 'Blogsy',
+	year: '2010 - 2012',
+	link: 'blogsy'
+};
+var dfxObj = {
+	name: 'Developer Festival X',
+	year: '2012',
+	link: 'dfx'
+};
+var theValleyObj = {
+	name: 'The Valley',
+	year: '2010',
+	link: 'thevalley'
+};
+
+function getCompanyName(link) {
+	if (link == 'blocks' ||
+	link == 'qualitytime' ||
+	link == 'dinnertimeplus' ||
+	link == 'miipc' ||
+	link == 'zeropc') {
+		return 'ZeroDesktop';
+	}
+	else if (link == 'blogsy') {
+		return 'Fomola';
+	}
+	else if (link == 'dfx') {
+		return 'Google Developer Group';
+	}
+	else if (link == 'thevalley') {
+		return 'Personal Works';
+	}
+}
+
 var companies = [
 	{
-		name: 'ZERODESKTOP',
-		works: [
-			{
-				name: 'Blocks',
-				year: '2014 - 2015',
-				link: 'blocks'
-			},
-			{
-				name: 'QualityTime',
-				year: '2014',
-				link: 'qualitytime'
-			},
-			{
-				name: 'DinnerTime Plus',
-				year: '2013',
-				link: 'dinnertimeplus'
-			},
-			{
-				name: 'MiiPC',
-				year: '2012 - 2013',
-				link: 'miipc'
-			},
-			{
-				name: 'ZeroPC',
-				year: '2012 - 2013',
-				link: 'zeropc'
-			}
-		]
+		name: getCompanyName(blocksObj.link),
+		works: [ blocksObj, qualityTimeObj, dinnerTimeObj, miiPcObj, zeroPcObj ]
 	},
 	{
-		name: 'FOMOLA',
-		works: [
-			{
-				name: 'Blogsy',
-				year: '2010 - 2012',
-				link: 'blogsy'
-			}
-		]
+		name: getCompanyName(blogsyObj.link),
+		works: [ blogsyObj ]
 	},
 	{
-		name: 'GOOGLE DEVELOPER GROUP',
-		works: [
-			{
-				name: 'Developer Festival X',
-				year: '2012',
-				link: 'dfx'
-			}
-		]
+		name: getCompanyName(dfxObj.link),
+		works: [ dfxObj ]
 	},
 	{
-		name: 'PRIVATE WORKS',
-		works: [
-			{
-				name: 'The Valley',
-				year: '2010',
-				link: 'thevalley'
-			}
-		]
+		name: getCompanyName(theValleyObj.link),
+		works: [ theValleyObj ]
 	}
 ];
 
-portfolioApp.config(function($routeProvider) {
+portfolioApp.config(['$routeProvider', '$locationProvider',
+function($routeProvider, $locationProvider) {
 	$routeProvider.when('/blocks', {
-        templateUrl : 'works/blocks.html'
+        templateUrl : 'works/blocks.html',
+        controller: 'ContentCtrl',
+        controllerAs: 'content',
+        resolve: {
+	        content: function() {
+		        return blocksObj;
+		    }
+        }
     })
-    $routeProvider.when('/qualitytime', {
-        templateUrl : 'works/qualitytime.html'
+    .when('/qualitytime', {
+        templateUrl : 'works/qualitytime.html',
+        controller: 'ContentCtrl',
+        controllerAs: 'content',
+        resolve: {
+	        content: function() {
+		        return qualityTimeObj;
+		    }
+        }
     })
-    $routeProvider.when('/dinnertimeplus', {
-        templateUrl : 'works/dinnertimeplus.html'
+    .when('/dinnertimeplus', {
+        templateUrl : 'works/dinnertimeplus.html',
+        controller: 'ContentCtrl',
+        controllerAs: 'content',
+        resolve: {
+	        content: function() {
+		        return dinnerTimeObj;
+		    }
+        }
     })
-    $routeProvider.when('/miipc', {
-        templateUrl : 'works/miipc.html'
+    .when('/miipc', {
+        templateUrl : 'works/miipc.html',
+        controller: 'ContentCtrl',
+        controllerAs: 'content',
+        resolve: {
+	        content: function() {
+		        return miiPcObj;
+		    }
+        }
     })
-    $routeProvider.when('/zeropc', {
-        templateUrl : 'works/zeropc.html'
+    .when('/zeropc', {
+        templateUrl : 'works/zeropc.html',
+        controller: 'ContentCtrl',
+        controllerAs: 'content',
+        resolve: {
+	        content: function() {
+		        return zeroPcObj;
+		    }
+        }
     })
-    $routeProvider.when('/blogsy', {
-        templateUrl : 'works/blogsy.html'
+    .when('/blogsy', {
+        templateUrl : 'works/blogsy.html',
+        controller: 'ContentCtrl',
+        controllerAs: 'content',
+        resolve: {
+	        content: function() {
+		        return blogsyObj;
+		    }
+        }
     })
-    $routeProvider.when('/dfx', {
-        templateUrl : 'works/dfx.html'
+    .when('/dfx', {
+        templateUrl : 'works/dfx.html',
+        controller: 'ContentCtrl',
+        controllerAs: 'content',
+        resolve: {
+	        content: function() {
+		        return dfxObj;
+		    }
+        }
     })
-    $routeProvider.when('/thevalley', {
-        templateUrl : 'works/thevalley.html'
+    .when('/thevalley', {
+        templateUrl : 'works/thevalley.html',
+        controller: 'ContentCtrl',
+        controllerAs: 'content',
+        resolve: {
+	        content: function() {
+		        return theValleyObj;
+		    }
+        }
     }) 
-});
+}]);
 
-portfolioApp.controller('NavigationController', function($scope, $location) {
-	$scope.companies = companies;
-	
-	$scope.isActive = function(viewLocation) {
+portfolioApp.controller('NavigationCtrl', ['$route', '$location',
+function($route, $location) {
+	this.companies = companies;
+	this.isActive = function(viewLocation) {
 		if ($location.path() == viewLocation) {
 			return "active";
 		}
@@ -100,4 +174,10 @@ portfolioApp.controller('NavigationController', function($scope, $location) {
 			return "";
 		}
 	}
-});
+}]);
+
+portfolioApp.controller('ContentCtrl', ['content',
+function(content) {
+	this.data = content;
+	this.company = getCompanyName(content.link);
+}]);

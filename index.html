@@ -10,7 +10,7 @@
 	</head>
 	
 	<body>
-		<div class="wrapper" ng-controller="NavigationController">
+		<div class="wrapper" ng-controller="NavigationCtrl as navi">
 			<div class="sidebar">
 				<div class="title">
 					<img src="images/sidebar_logo.svg" alt="logo" />
@@ -20,11 +20,11 @@
 				<div class="navigation-wrapper">
 					<div class="navigation">
 						<ul class="company">
-							<li ng-repeat="company in companies">
+							<li ng-repeat="company in navi.companies">
 								<h3 class="company-name">{{ company.name }}</h3>
 								<ul class="work">
 									<li ng-repeat="work in company.works">
-										<a class="work-link {{ isActive('/'+work.link) }}" href="#{{ work.link }}"><h4 class="work-title">{{ work.name }}</h4></a>
+										<a class="work-link {{ navi.isActive('/'+work.link) }}" href="#{{ work.link }}"><h4 class="work-title">{{ work.name }}</h4></a>
 										<span class="work-year">{{ work.year }}</span>
 									</li>
 								</ul>
@@ -37,9 +37,9 @@
 				<div class="content-wrapper">
 					<div class="content">
 						<div ng-view></div>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div><!-- .content -->
+				</div><!-- .content-wrapper -->
+			</div><!-- .main -->
+		</div><!-- .wrapper -->
 	</body>
 </html>
