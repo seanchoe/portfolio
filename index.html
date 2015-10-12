@@ -20,11 +20,11 @@
 				<div class="navigation-wrapper">
 					<div class="navigation">
 						<ul class="company">
-							<li ng-repeat="company in navi.companies">
-								<h3 class="company-name">{{ company.name }}</h3>
+							<li ng-repeat="navigation in navi.navigation">
+								<h3 class="company-name">{{ navigation.company.name }}</h3>
 								<ul class="work">
-									<li ng-repeat="work in company.works">
-										<a class="work-link {{ navi.isActive('/'+work.link) }}" href="#{{ work.link }}"><h4 class="work-title">{{ work.name }}</h4></a>
+									<li ng-repeat="work in navigation.works">
+										<a class="work-link {{ navi.isActive('/'+work.id) }}" href="#{{ work.id }}"><h4 class="work-title">{{ work.name }}</h4></a>
 										<span class="work-year">{{ work.year }}</span>
 									</li>
 								</ul>

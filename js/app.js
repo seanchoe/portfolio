@@ -1,83 +1,108 @@
 var portfolioApp = angular.module('portfolioApp', ['ngRoute']);
 
+// Companies
+var zeroDesktopObj = {
+	id: 'zerodesktop',
+	name: 'ZeroDesktop'
+}
+
+var fomolaObj = {
+	id: 'fomola',
+	name: 'Fomola'
+}
+
+var gdgObj = {
+	id: 'gdg',
+	name: 'Google Developer Group'
+}
+
+var personalWorksObj = {
+	id: 'personalworks',
+	name: 'Personal Works'
+}
+
+// Works
 var blocksObj = {
 	name: 'Blocks',
 	year: '2014 - 2015',
-	link: 'blocks'
+	id: 'blocks',
+	companyId: 'zerodesktop'
 };
 var qualityTimeObj = {
 	name: 'QualityTime',
 	year: '2014',
-	link: 'qualitytime'
+	id: 'qualitytime',
+	companyId: 'zerodesktop'
 };
 var dinnerTimeObj = {
 	name: 'DinnerTime Plus',
 	year: '2013',
-	link: 'dinnertimeplus'
+	id: 'dinnertimeplus',
+	companyId: 'zerodesktop'
 };
 var miiPcObj = {
 	name: 'MiiPC',
 	year: '2012 - 2013',
-	link: 'miipc'
+	id: 'miipc',
+	companyId: 'zerodesktop'
 };
 var zeroPcObj = {
 	name: 'ZeroPC',
 	year: '2012 - 2013',
-	link: 'zeropc'
+	id: 'zeropc',
+	companyId: 'zerodesktop'
 };
 var blogsyObj = {
 	name: 'Blogsy',
 	year: '2010 - 2012',
-	link: 'blogsy'
+	id: 'blogsy',
+	companyId: 'fomola'
 };
 var dfxObj = {
 	name: 'Developer Festival X',
 	year: '2012',
-	link: 'dfx'
+	id: 'dfx',
+	companyId: 'gdg'
 };
 var theValleyObj = {
 	name: 'The Valley',
 	year: '2010',
-	link: 'thevalley'
+	link: 'thevalley',
+	companyId: 'personalworks'
 };
 
-function getCompanyName(link) {
-	if (link == 'blocks' ||
-	link == 'qualitytime' ||
-	link == 'dinnertimeplus' ||
-	link == 'miipc' ||
-	link == 'zeropc') {
-		return 'ZeroDesktop';
-	}
-	else if (link == 'blogsy') {
-		return 'Fomola';
-	}
-	else if (link == 'dfx') {
-		return 'Google Developer Group';
-	}
-	else if (link == 'thevalley') {
-		return 'Personal Works';
-	}
+var companies = [zeroDesktopObj, fomolaObj, gdgObj, personalWorksObj];
+var works = [blocksObj, qualityTimeObj, dinnerTimeObj, miiPcObj, zeroPcObj, blogsyObj, dfxObj, theValleyObj];
+
+var navigation = [];
+
+for (index in companies) {
+	var company = companies[index];
+	navigation.push({
+		company: company,
+		works: getWorksArrayWithCompanyId(company.id)
+	});
 }
 
-var companies = [
-	{
-		name: getCompanyName(blocksObj.link),
-		works: [ blocksObj, qualityTimeObj, dinnerTimeObj, miiPcObj, zeroPcObj ]
-	},
-	{
-		name: getCompanyName(blogsyObj.link),
-		works: [ blogsyObj ]
-	},
-	{
-		name: getCompanyName(dfxObj.link),
-		works: [ dfxObj ]
-	},
-	{
-		name: getCompanyName(theValleyObj.link),
-		works: [ theValleyObj ]
+function getWorksArrayWithCompanyId(companyId) {
+	var returnArray = Array();
+	for (index in works) {
+		var work = works[index];
+		if (work.companyId == companyId) {
+			returnArray.push(work);
+		}
 	}
-];
+	return returnArray;
+}
+
+function getCompanyNameWithId(companyId) {
+	for (index in companies) {
+		var company = companies[index];
+		if (company.id == companyId) {
+			return company.name;
+		}
+	}
+}
 
 portfolioApp.config(['$routeProvider', '$locationProvider',
 function($routeProvider, $locationProvider) {
@@ -160,12 +185,12 @@ function($routeProvider, $locationProvider) {
 		        return theValleyObj;
 		    }
         }
-    }) 
+    })
 }]);
 
 portfolioApp.controller('NavigationCtrl', ['$route', '$location',
 function($route, $location) {
-	this.companies = companies;
+	this.navigation = navigation;
 	this.isActive = function(viewLocation) {
 		if ($location.path() == viewLocation) {
 			return "active";
@@ -179,5 +204,5 @@ function($route, $location) {
 portfolioApp.controller('ContentCtrl', ['content',
 function(content) {
 	this.data = content;
-	this.company = getCompanyName(content.link);
+	this.company = getCompanyNameWithId(content.companyId);
 }]);
