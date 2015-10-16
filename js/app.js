@@ -191,6 +191,7 @@ function($routeProvider, $locationProvider) {
 portfolioApp.controller('NavigationCtrl', ['$route', '$location',
 function($route, $location) {
 	this.navigation = navigation;
+	this.homeUrl = "#blocks";
 	this.isActive = function(viewLocation) {
 		if ($location.path() == viewLocation) {
 			return "active";
@@ -198,6 +199,10 @@ function($route, $location) {
 		else {
 			return "";
 		}
+	}
+	
+	if ($location.path() == '' || $location.path() == '/' || $location.path() == '#') {
+		$location.path("/blocks");
 	}
 }]);
 

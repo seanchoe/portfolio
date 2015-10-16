@@ -74,7 +74,11 @@ body {
 	position: relative;
 }
 
-.sidebar > .title > img {
+.sidebar > .title a {
+	display: inline-block;
+}
+
+.sidebar > .title img {
 	margin-right: 10px;
 }
 
@@ -83,13 +87,15 @@ body {
 	font-weight: 400;
 	letter-spacing: 0.9em;
 	margin-top: 0.8em;
-	margin-bottom: 0.6em;
+	margin-bottom: 0.4em;
 }
 
-.sidebar > .title > h3 {
+.sidebar > .title > a.works-home-link {
 	font-size: 11px;
 	font-weight: 600;
 	letter-spacing: 1.2em;
+	color: #2FB1FF;
+	text-decoration: none;
 }
 
 .sidebar > .navigation-wrapper {
