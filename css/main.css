@@ -262,3 +262,42 @@ body {
 .image-gallery-content figure img {
 	max-width: 780px;
 }
+
+.image-gallery-wrapper .arrow-wrapper {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.image-gallery-wrapper .gallery-arrow {
+	flex: 0 0 68px;
+	padding: 20px;
+	cursor: pointer;
+}
+
+.image-gallery-wrapper .gallery-arrow img {
+	width: 28px;
+	height: 58px;
+}
+
+.image-gallery-wrapper .gallery-spacer {
+	flex: 1 1 auto;
+	height: 100vh;
+}
+
+.image-gallery-wrapper .close-button {
+	width: 64px;
+	height: 64px;
+	position: relative;
+	float: right;
+	cursor: pointer;
+}
+
+.image-gallery-wrapper .close-button img {
+	width: 24px;
+	height: 24px;
+	margin: 20px;
+}

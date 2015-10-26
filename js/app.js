@@ -48,20 +48,19 @@ function($scope, $routeParams, $http, contentService, galleryService) {
     
     $scope.companyName = function() {
 	    return contentService.getCurrentCompanyName();
-    }
+    };
     $scope.workName = function() {
 	    return contentService.getCurrentWorkName();
-    }
+    };
     $scope.workYear = function() {
 	    return contentService.getCurrentWorkYear();
-    }
+    };
     $scope.showGallery = function(index) {
 	    var galleryWrapper = $("#image-gallery");
 		galleryWrapper.fadeIn();
 		galleryWrapper.css("display", "flex");
-		var galleyContent = $("#image-galley-content");
-		galleyContent.html(galleryService.getFigureWithIndex(index));
-	}
+		galleryService.showFigureWithIndex(index);
+	};
     
     var figureArray = [];
     $('#content figure').each(function(index) {
@@ -78,13 +77,27 @@ function($scope, $routeParams, $http, contentService, galleryService) {
 
 portfolioApp.controller('GalleryCtrl', ['$scope', 'galleryService',
 function($scope, galleryService) {		
-	$scope.onBackgroundClick = function() {
+	$scope.closeGallery = function() {
 		var galleryWrapper = $("#image-gallery");
 		galleryWrapper.fadeOut(function() {
 			$(this).css('display', 'none');
 		});
 		var galleyContent = $("#image-galley-content");
 		galleyContent.html("");
+	};
+	
+	$scope.arrowLeft = function() {
+		var currentIndex = galleryService.getCurrentIndex();
+		if (currentIndex > 0) {
+			galleryService.showFigureWithIndex(currentIndex - 1);
+		}
+	};
+	
+	$scope.arrowRight = function() {
+		var currentIndex = galleryService.getCurrentIndex();
+		if (currentIndex < galleryService.getListCount() - 1) {
+			galleryService.showFigureWithIndex(currentIndex + 1);
+		}
 	};
 }]);
 
@@ -128,19 +141,42 @@ portfolioApp.factory('contentService', function() {
 
 portfolioApp.factory('galleryService', function() {
 	var figureList = [];
+	var currentIndex = 0;
 	
 	var setFigureList = function(list) {
 		figureList = list;
 	}
 	
-	var getFigureWithIndex = function(index) {
+	var showFigureWithIndex = function(index) {
+		currentIndex = index;
 		var currentFigure = figureList[index];
 		currentFigure.children('img').css('width', '');
-		return figureList[index];
+		var figure = figureList[index];
+		var galleyContent = $("#image-galley-content");
+		galleyContent.html(figure);
+		
+		$('#arrow-left').show();
+		$('#arrow-right').show();
+		if (currentIndex == 0) {
+			$('#arrow-left').hide();
+		}
+		else if (currentIndex == figureList.length - 1) {
+			$('#arrow-right').hide();
+		}
+	}
+	
+	var getCurrentIndex = function() {
+		return currentIndex;
+	}
+	
+	var getListCount = function() {
+		return figureList.length;
 	}
 	
 	return {
 		setFigureList: setFigureList,
-		getFigureWithIndex: getFigureWithIndex
+		showFigureWithIndex: showFigureWithIndex,
+		getCurrentIndex: getCurrentIndex,
+		getListCount: getListCount
 	}
 });

@@ -49,8 +49,14 @@
 		</div><!-- .wrapper -->
 		
 		<div class="image-gallery-wrapper" id="image-gallery" ng-controller="GalleryCtrl">
-			<div class="image-gallery-background" ng-click="onBackgroundClick()"></div>
+			<div class="image-gallery-background"></div>
+			<div class="arrow-wrapper">
+				<div class="gallery-arrow" id="arrow-left" ng-click="arrowLeft()"><img src="images/arrow_left.png" /></div>
+				<div class="gallery-spacer" ng-click="closeGallery()"></div>
+				<div class="gallery-arrow" id="arrow-right" ng-click="arrowRight()"><img src="images/arrow_right.png" /></div>
+			</div>
 			<div class="image-gallery-content" id="image-galley-content">{{ currentFigure }}</div>
+			<div class="close-button" ng-click="closeGallery()"><img src="images/cross.png" /></div>
 		</div>
 	</body>
 </html>
