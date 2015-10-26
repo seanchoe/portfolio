@@ -256,6 +256,7 @@ body {
 	z-index: 10;
 	text-align: center;
 	color: white;
+	max-width: 780px;
 }
 
 .image-gallery-content figure img {
