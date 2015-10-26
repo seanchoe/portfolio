@@ -7,12 +7,12 @@
 	</head>
 	
 	<body>
-		<div class="wrapper" ng-controller="NavigationCtrl">
-			<div class="sidebar">
+		<div class="wrapper">
+			<div class="sidebar" ng-controller="NavigationCtrl">
 				<div class="title">
 					<a href="//seanchoe.com"><img src="images/sidebar_logo.svg" alt="logo" /></a>
 					<h2>SEAN CHOE</h2>
-					<a href="#{{ homeId }}" class="works-home-link"><h3>WORKS</h3></a>
+					<a href="#{{ homeId }}" class="works-home-link"><h3>WORKS {{ workId }}</h3></a>
 				</div>
 				<div class="navigation-wrapper">
 					<div class="navigation">
@@ -32,16 +32,21 @@
 			</div><!-- .sidebar -->
 			<div class="main">
 				<div class="content-wrapper">
-					<div class="content" id="content">
+					<div class="content" id="content" ng-controller="ContentCtrl">
+						<h1>{{ workName() }}</h1>
+						<div class="info-wrapper">
+							<span class="company-name">{{ companyName() }}</span>
+							<span class="work-year">{{ workYear() }}</span>
+						</div>
 						<div ng-view></div>
 					</div><!-- .content -->
 				</div><!-- .content-wrapper -->
 			</div><!-- .main -->
 		</div><!-- .wrapper -->
 		
-		<div class="image-gallery-wrapper" id="image-gallery">
-			<div class="image-gallery-background"></div>
-			<div class="image-gallery-content" id="image-galley-content"></div>
+		<div class="image-gallery-wrapper" id="image-gallery" ng-controller="GalleryCtrl">
+			<div class="image-gallery-background" ng-click="onBackgroundClick()"></div>
+			<div class="image-gallery-content" id="image-galley-content">{{ currentFigure }}</div>
 		</div>
 		
 		<script src="./js/bower_components/jquery/dist/jquery.min.js"></script>

@@ -3,13 +3,15 @@ var portfolioApp = angular.module('portfolioApp', ['ngRoute']);
 portfolioApp.config(['$routeProvider', '$locationProvider',
 function($routeProvider, $locationProvider) {
 	$routeProvider.when('/:workId', {
-        templateUrl : './work.html',
+        templateUrl : function(urlattr){
+            return './works/' + urlattr.workId + '.html';
+        },
         controller: 'ContentCtrl',
     })
 }]);
 
 portfolioApp.controller('NavigationCtrl', ['$scope', '$http', '$routeParams', '$location',
-function($scope, $http, $routeParams, $location) {
+function($scope, $http, $routeParams, $location) {	
 	$http.get('./js/companies.json').success(function(companies) {
     	$scope.companies = companies;
     	$scope.homeId = companies[0].works[0].id;
@@ -29,44 +31,110 @@ function($scope, $http, $routeParams, $location) {
 	}
 }]);
 
-portfolioApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http', '$sce',
-function($scope, $routeParams, $http, $sce) {
+portfolioApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http', 'contentService', 'galleryService',
+function($scope, $routeParams, $http, contentService, galleryService) {	
 	$http.get('./js/companies.json').success(function(companies) {
-		var currentCompany;
-		var currentWork;
     	for (i in companies) {
 	    	var company = companies[i];
 	    	for (j in company.works) {
 		    	var work = company.works[j];
 		    	if (work.id == $routeParams.workId) {
-			    	currentCompany = company;
-			    	currentWork = work;
+			    	contentService.setCurrentCompanyAndWork(company, work);
 			    	break;
 		    	}
 	    	}
     	}
-    	
-    	$scope.company = currentCompany;
-		$scope.work = currentWork;
-		
-		$http.get('./works/'+$routeParams.workId+'.html').success(function(content) {
-			$scope.content = $sce.trustAsHtml(content);
-	    });
     });
+    
+    $scope.companyName = function() {
+	    return contentService.getCurrentCompanyName();
+    }
+    $scope.workName = function() {
+	    return contentService.getCurrentWorkName();
+    }
+    $scope.workYear = function() {
+	    return contentService.getCurrentWorkYear();
+    }
+    $scope.showGallery = function(index) {
+	    var galleryWrapper = $("#image-gallery");
+		galleryWrapper.fadeIn();
+		galleryWrapper.css("display", "flex");
+		var galleyContent = $("#image-galley-content");
+		galleyContent.html(galleryService.getFigureWithIndex(index));
+	}
+    
+    var figureArray = [];
+    $('#content figure').each(function(index) {
+	    $(this).data('index', index);
+	    figureArray.push($(this).clone());
+    })
+    galleryService.setFigureList(figureArray);
+    
 }]);
 
-/*
-var currentImageArray = [];
-function addImageGalleyToCurrentPage() {
-	$("#content figure").each(function(index) {
-		$(this).data("index", {index});
-		currentImageArray.push($(this));
-		$(this).click(function() {
-			var galleryWrapper = $("#image-gallery");
-			galleryWrapper.fadeIn();
-			galleryWrapper.css("display", "flex");
-			$("#image-galley-content").html($(this));
+portfolioApp.controller('GalleryCtrl', ['$scope', 'galleryService',
+function($scope, galleryService) {		
+	$scope.onBackgroundClick = function() {
+		var galleryWrapper = $("#image-gallery");
+		galleryWrapper.fadeOut(function() {
+			$(this).css('display', 'none');
 		});
-	});
-}
-*/
+		var galleyContent = $("#image-galley-content");
+		galleyContent.html("");
+	};
+}]);
+
+portfolioApp.factory('contentService', function() {
+	var currentCompany;
+	var currentWork;
+	
+	var setCurrentCompanyAndWork = function(company, work) {
+		currentCompany = company;
+		currentWork = work;
+	};
+	
+	var getCurrentCompanyName = function() {
+		if (currentCompany != null) {
+			return currentCompany.name;
+		}
+		return "";
+	};
+	
+	var getCurrentWorkName = function() {
+		if (currentWork != null) {
+			return currentWork.name;
+		}
+		return "";
+	};
+	
+	var getCurrentWorkYear = function() {
+		if (currentWork != null) {
+			return currentWork.year;
+		}
+		return "";
+	};
+	
+	return {
+		setCurrentCompanyAndWork: setCurrentCompanyAndWork,
+		getCurrentCompanyName: getCurrentCompanyName,
+		getCurrentWorkName: getCurrentWorkName,
+		getCurrentWorkYear: getCurrentWorkYear
+	};
+});
+
+portfolioApp.factory('galleryService', function() {
+	var figureList = [];
+	
+	var setFigureList = function(list) {
+		figureList = list;
+	}
+	
+	var getFigureWithIndex = function(index) {
+		return figureList[index];
+	}
+	
+	return {
+		setFigureList: setFigureList,
+		getFigureWithIndex: getFigureWithIndex
+	}
+});
