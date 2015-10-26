@@ -65,6 +65,10 @@ function($scope, $routeParams, $http, contentService, galleryService) {
     
     var figureArray = [];
     $('#content figure').each(function(index) {
+	    var images = $(this).children('img');
+	    images.each(function() {
+		    $(this).css('width', $(this).data('width'));
+	    });
 	    $(this).data('index', index);
 	    figureArray.push($(this).clone());
     })
@@ -130,6 +134,8 @@ portfolioApp.factory('galleryService', function() {
 	}
 	
 	var getFigureWithIndex = function(index) {
+		var currentFigure = figureList[index];
+		currentFigure.children('img').css('width', '');
 		return figureList[index];
 	}
 	
