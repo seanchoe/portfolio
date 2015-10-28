@@ -235,6 +235,15 @@ body {
 	height: 100%;
 	min-width: 800px;
 	z-index: 1;
+	text-align: center;
+}
+
+.image-gallery-inside-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .image-gallery-wrapper .image-gallery-background {
@@ -248,10 +257,9 @@ body {
 }
 
 .image-gallery-wrapper .image-gallery-content {
-	margin: auto;
-	width: 400;
-	height: 300;
 	z-index: 10;
+	flex: 0 0 auto;
+	align-self: center;	
 }
 
 .image-gallery-wrapper .image-gallery-content figure {
@@ -259,11 +267,12 @@ body {
 	text-align: center;
 	color: white;
 	max-width: 780px;
+	margin: auto;
 }
 
 .image-gallery-content figure img {
 	max-width: 780px;
-	max-height: 90%;
+	height: auto;
 }
 
 .image-gallery-content figcaption {
@@ -274,6 +283,8 @@ body {
 	width: 100%;
 	height: 100%;
 	position: absolute;
+	top: 0;
+	left: 0;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -298,9 +309,11 @@ body {
 .image-gallery-wrapper .close-button {
 	width: 64px;
 	height: 64px;
-	position: relative;
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
 	cursor: pointer;
+	z-index: 11;
 }
 
 .image-gallery-wrapper .close-button img {

@@ -58,7 +58,6 @@ function($scope, $routeParams, $http, contentService, galleryService) {
     $scope.showGallery = function(index) {
 	    var galleryWrapper = $("#image-gallery");
 		galleryWrapper.fadeIn();
-		galleryWrapper.css("display", "flex");
 		galleryService.showFigureWithIndex(index);
 	};
     
@@ -90,6 +89,7 @@ function($scope, galleryService) {
 		var currentIndex = galleryService.getCurrentIndex();
 		if (currentIndex > 0) {
 			galleryService.showFigureWithIndex(currentIndex - 1);
+			resizeGalleryImage();
 		}
 	};
 	
@@ -97,6 +97,7 @@ function($scope, galleryService) {
 		var currentIndex = galleryService.getCurrentIndex();
 		if (currentIndex < galleryService.getListCount() - 1) {
 			galleryService.showFigureWithIndex(currentIndex + 1);
+			resizeGalleryImage();
 		}
 	};
 }]);
@@ -150,10 +151,18 @@ portfolioApp.factory('galleryService', function() {
 	var showFigureWithIndex = function(index) {
 		currentIndex = index;
 		var currentFigure = figureList[index];
-		currentFigure.children('img').css('width', '');
+		
 		var figure = figureList[index];
 		var galleyContent = $("#image-galley-content");
 		galleyContent.html(figure);
+		
+		var image = currentFigure.children('img');
+		image.css('width', '');
+		var ratio = image.height() / image.width();
+		image.data('originalWidth', image.width());
+		image.data('ratio', ratio);
+		
+		resizeGalleryImage();
 		
 		$('#arrow-left').show();
 		$('#arrow-right').show();
@@ -179,4 +188,32 @@ portfolioApp.factory('galleryService', function() {
 		getCurrentIndex: getCurrentIndex,
 		getListCount: getListCount
 	}
+});
+
+function resizeGalleryImage() {
+	var image = $("#image-galley-content img");
+	var ratio = image.data("ratio");
+	var originalWidth = image.data('originalWidth');
+	
+	var viewportHeight = $(window).height() - 50;
+	
+	var arrowWidth = $("#arrow-left").width();
+	var viewportWidth = $(window).width() - arrowWidth * 2;
+	
+	if (originalWidth > viewportWidth || originalWidth * ratio > viewportHeight) {
+		var viewportRatio = viewportHeight / viewportWidth;
+		
+		if (viewportRatio > ratio) {
+			image.width(viewportWidth);
+			image.height(Math.floor(image.width() * ratio));
+		}
+		else {
+			image.height(viewportHeight);
+			image.width(Math.floor(image.height() / ratio));
+		}
+	}
+}
+
+$(window).resize(function() {
+	resizeGalleryImage();
 });
