@@ -48,7 +48,16 @@ html, body {
 body {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
 	overflow-y: hidden;
-	min-width: 800px;
+	min-width: 880px;
+}
+
+a, a:active, a:visited {
+	color: #2FB1FF;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #009dfd;
 }
 
 .wrapper {
@@ -233,7 +242,7 @@ body {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	min-width: 800px;
+	min-width: 880px;
 	z-index: 1;
 	text-align: center;
 }

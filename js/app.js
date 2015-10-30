@@ -166,10 +166,12 @@ portfolioApp.factory('galleryService', function() {
 		
 		$('#arrow-left').show();
 		$('#arrow-right').show();
+		
 		if (currentIndex == 0) {
 			$('#arrow-left').hide();
 		}
-		else if (currentIndex == figureList.length - 1) {
+		
+		if (currentIndex === figureList.length - 1) {
 			$('#arrow-right').hide();
 		}
 	}
