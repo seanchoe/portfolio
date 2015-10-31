@@ -46,6 +46,8 @@ function($scope, $routeParams, $http, contentService, galleryService) {
     	}
     });
     
+    $(".main").scrollTop(0)
+    
     $scope.companyName = function() {
 	    return contentService.getCurrentCompanyName();
     };
@@ -219,3 +221,4 @@ function resizeGalleryImage() {
 $(window).resize(function() {
 	resizeGalleryImage();
 });
+
