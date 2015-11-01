@@ -28,7 +28,7 @@ function($scope, $http, $routeParams, $location) {
 		else {
 			return "";
 		}
-	}
+	};
 }]);
 
 portfolioApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http', 'contentService', 'galleryService',
@@ -46,7 +46,14 @@ function($scope, $routeParams, $http, contentService, galleryService) {
     	}
     });
     
-    $(".main").scrollTop(0)
+    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    if (viewportWidth > 780) {
+	    $(".main").scrollTop(0);
+	}
+	else {
+		$(window).scrollTop(0);
+		$("#sidebar").hide();
+	}
     
     $scope.companyName = function() {
 	    return contentService.getCurrentCompanyName();
@@ -58,9 +65,12 @@ function($scope, $routeParams, $http, contentService, galleryService) {
 	    return contentService.getCurrentWorkYear();
     };
     $scope.showGallery = function(index) {
-	    var galleryWrapper = $("#image-gallery");
-		galleryWrapper.fadeIn();
-		galleryService.showFigureWithIndex(index);
+	    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+	    if (viewportWidth > 780) {
+		    var galleryWrapper = $("#image-gallery");
+			galleryWrapper.fadeIn();
+			galleryService.showFigureWithIndex(index);
+		}
 	};
     
     var figureArray = [];
@@ -222,3 +232,14 @@ $(window).resize(function() {
 	resizeGalleryImage();
 });
 
+$(document).ready(function() {
+	$("#sidebar-button").click(function() {
+		var sidebar = $("#sidebar");
+		if (sidebar.is(":visible")) {
+			sidebar.hide();
+		}
+		else {
+			sidebar.show();
+		}
+	});
+});

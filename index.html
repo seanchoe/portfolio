@@ -2,6 +2,7 @@
 <html ng-app="portfolioApp">
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
 		<title>Sean's Works</title>
 		<link rel="stylesheet" href="css/main.css">
 		<script src="./js/bower_components/jquery/dist/jquery.min.js"></script>
@@ -12,9 +13,10 @@
 	
 	<body>
 		<div class="wrapper">
-			<div class="sidebar" ng-controller="NavigationCtrl">
+			<div class="sidebar-button" id="sidebar-button"></div>
+			<div class="sidebar" id="sidebar" ng-controller="NavigationCtrl">
 				<div class="title">
-					<a href="//seanchoe.com"><img src="images/sidebar_logo.svg" alt="logo" /></a>
+					<a class="logo" href="//seanchoe.com"><img src="images/sidebar_logo.svg" alt="logo" /></a>
 					<h2>SEAN CHOE</h2>
 					<a href="#{{ homeId }}" class="works-home-link"><h3>WORKS {{ workId }}</h3></a>
 				</div>
