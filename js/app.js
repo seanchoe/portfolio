@@ -230,6 +230,14 @@ function resizeGalleryImage() {
 
 $(window).resize(function() {
 	resizeGalleryImage();
+	
+	var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    if (viewportWidth > 780) {
+	    $("#sidebar").show();
+	}
+	else {
+		$("#sidebar").hide();
+	}
 });
 
 $(document).ready(function() {

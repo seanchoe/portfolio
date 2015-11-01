@@ -290,6 +290,53 @@ a:hover {
 	margin: 20px;
 }
 
+.contribution-label {
+	display: block;
+	font-size: 13px;
+	color: #a2a2a2;
+	margin-top: 16px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.contribution .percent-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.contribution .cont-title {
+	color: #3c3c3c;
+	font-size: 14px;
+}
+
+.contribution .cont-percent {
+	width: 100%;
+	background-color: #ececec;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	flex: 1 1 auto;
+	float: left;
+	height: 8px;
+}
+
+.contribution .cont-percent-bar {
+	background-color: #2FB1FF;
+	height: 100%;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	float: left;
+	display: inline-block;
+}
+
+.contribution .percent-text {
+	color: #2FB1FF;
+	font-size: 14px;
+	padding-left: 8px;
+	flex: 0 0 48px;
+}
+
 /* Desktop */
 @media (min-width: 780px) {
 	html, body {
@@ -350,6 +397,32 @@ a:hover {
 	
 	.content p {
 		font-size: 18px;
+	}
+	
+	.contribution {
+		padding-top: 8px;
+		margin: 2px 0 30px 0;
+	}
+	
+	.contribution li {
+		display: flex;
+		flex-direction: row;
+		vertical-align: middle;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.contribution .percent-wrapper {
+		border-left: 1px solid #c2c2c2;
+		padding: 12px 0;
+		flex: 1 1 auto;
+	}
+	
+	.contribution .cont-title {
+		width: 240px;
+		text-align: right;
+		margin-right: 8px;
+		flex: 0 0 240px;
 	}
 }
 
@@ -426,5 +499,22 @@ a:hover {
 	iframe {
 		max-width: 90vw;
 		height: auto;
+	}
+	
+	.contribution {
+		margin: 2px 8px 20px 8px;
+	}
+	
+	.contribution li {
+		border-left: 1px solid #c2c2c2;
+		padding: 4px 0 8px 0;
+	}
+	
+	.contribution span {
+		display: block;
+	}
+	
+	.contribution .cont-title {
+		padding-left: 8px;
 	}
 }
