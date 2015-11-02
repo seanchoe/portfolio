@@ -235,9 +235,6 @@ $(window).resize(function() {
     if (viewportWidth > 780) {
 	    $("#sidebar").show();
 	}
-	else {
-		$("#sidebar").hide();
-	}
 });
 
 $(document).ready(function() {
