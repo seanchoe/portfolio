@@ -11,7 +11,8 @@ function($routeProvider, $locationProvider) {
 }]);
 
 portfolioApp.controller('NavigationCtrl', ['$scope', '$http', '$routeParams', '$location',
-function($scope, $http, $routeParams, $location) {	
+function($scope, $http, $routeParams, $location) {
+	$scope.isLoaded = false;	
 	$http.get('./js/companies.json').success(function(companies) {
     	$scope.companies = companies;
     	$scope.homeId = companies[0].works[0].id;
@@ -19,6 +20,7 @@ function($scope, $http, $routeParams, $location) {
     	if ($location.path() == '' || $location.path() == '/' || $location.path() == '#') {
 			$location.path("/"+$scope.homeId);
 		}
+		$scope.isLoaded = true;
     });
     
     $scope.isActive = function(workId) {
@@ -32,7 +34,8 @@ function($scope, $http, $routeParams, $location) {
 }]);
 
 portfolioApp.controller('ContentCtrl', ['$scope', '$routeParams', '$http', 'contentService', 'galleryService',
-function($scope, $routeParams, $http, contentService, galleryService) {	
+function($scope, $routeParams, $http, contentService, galleryService) {
+	$scope.isLoaded = false;
 	$http.get('./js/companies.json').success(function(companies) {
     	for (i in companies) {
 	    	var company = companies[i];
@@ -44,6 +47,7 @@ function($scope, $routeParams, $http, contentService, galleryService) {
 		    	}
 	    	}
     	}
+    	$scope.isLoaded = true;
     });
     
     var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)

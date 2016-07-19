@@ -26,9 +26,9 @@
 				<div class="title">
 					<a class="logo" href="//seanchoe.com"><img src="images/sidebar_logo.svg" alt="logo" /></a>
 					<h2>SEAN CHOE</h2>
-					<a href="#{{ homeId }}" class="works-home-link"><h3>WORKS {{ workId }}</h3></a>
+					<a href="#{{ homeId }}" class="works-home-link"><h3>WORKS</h3></a>
 				</div>
-				<div class="navigation-wrapper">
+				<div class="navigation-wrapper" ng-show="isLoaded">
 					<div class="navigation">
 						<ul class="company">
 							<li ng-repeat="company in companies">
@@ -46,7 +46,7 @@
 			</div><!-- .sidebar -->
 			<div class="main">
 				<div class="content-wrapper">
-					<div class="content" id="content" ng-controller="ContentCtrl">
+					<div class="content" id="content" ng-controller="ContentCtrl" ng-show="isLoaded">
 						<h1>{{ workName() }}</h1>
 						<div class="info-wrapper">
 							<span class="company-name">{{ companyName() }}</span>
