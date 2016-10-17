@@ -3,6 +3,16 @@
 		"name": "ZeroDesktop",
 		"works": [
 			{
+				"id": "nc-vspace-pro-10",
+				"name": "NComputing vSpace Pro 10",
+				"year": "2015 - 2016"
+			},
+			{
+				"id": "nc-management-portal",
+				"name": "NComputing Management Portal",
+				"year": "2015 - 2016"
+			},
+			{
 				"id": "blocks",
 				"name": "Blocks",
 				"year": "2014 - 2015"

@@ -212,7 +212,7 @@ function resizeGalleryImage() {
 	var viewportHeight = $(window).height() - 50;
 	
 	var arrowWidth = $("#arrow-left").width();
-	var viewportWidth = $(window).width() - arrowWidth * 2;
+	var viewportWidth = $(window).width() - arrowWidth * 2 - 80;
 	
 	if (originalWidth > viewportWidth || originalWidth * ratio > viewportHeight) {
 		var viewportRatio = viewportHeight / viewportWidth;
