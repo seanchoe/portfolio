@@ -11,16 +11,16 @@ function($routeProvider, $locationProvider) {
 }]);
 
 portfolioApp.controller('NavigationCtrl', ['$scope', '$http', '$routeParams', '$location',
-function($scope, $http, $routeParams, $location) {	
+function($scope, $http, $routeParams, $location) {
 	$http.get('./js/companies.json').success(function(companies) {
     	$scope.companies = companies;
     	$scope.homeId = companies[0].works[0].id;
-    	
+
     	if ($location.path() == '' || $location.path() == '/' || $location.path() == '#') {
 			$location.path("/"+$scope.homeId);
 		}
     });
-    
+
     $scope.isActive = function(workId) {
 		if ($routeParams.workId == workId) {
 			return "active";
@@ -44,8 +44,18 @@ function($scope, $routeParams, $http, contentService, galleryService) {
 		    	}
 	    	}
     	}
+
+			var gallery = document.getElementById('images');
+			if (gallery != undefined) {
+				var options = {
+					rotatable: false,
+					scalable: false,
+					transition: false
+				};
+				var viewer = new Viewer(gallery, options);
+			}
     });
-    
+
     var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
     if (viewportWidth > 780) {
 	    $(".main").scrollTop(0);
@@ -54,7 +64,7 @@ function($scope, $routeParams, $http, contentService, galleryService) {
 		$(window).scrollTop(0);
 		$("#sidebar").hide();
 	}
-    
+
     $scope.companyName = function() {
 	    return contentService.getCurrentCompanyName();
     };
@@ -72,7 +82,7 @@ function($scope, $routeParams, $http, contentService, galleryService) {
 			galleryService.showFigureWithIndex(index);
 		}
 	};
-    
+
     var figureArray = [];
     $('#content figure').each(function(index) {
 	    var images = $(this).children('img');
@@ -83,11 +93,11 @@ function($scope, $routeParams, $http, contentService, galleryService) {
 	    figureArray.push($(this).clone());
     })
     galleryService.setFigureList(figureArray);
-    
+
 }]);
 
 portfolioApp.controller('GalleryCtrl', ['$scope', 'galleryService',
-function($scope, galleryService) {		
+function($scope, galleryService) {
 	$scope.closeGallery = function() {
 		var galleryWrapper = $("#image-gallery");
 		galleryWrapper.fadeOut(function() {
@@ -96,7 +106,7 @@ function($scope, galleryService) {
 		var galleyContent = $("#image-galley-content");
 		galleyContent.html("");
 	};
-	
+
 	$scope.arrowLeft = function() {
 		var currentIndex = galleryService.getCurrentIndex();
 		if (currentIndex > 0) {
@@ -104,7 +114,7 @@ function($scope, galleryService) {
 			resizeGalleryImage();
 		}
 	};
-	
+
 	$scope.arrowRight = function() {
 		var currentIndex = galleryService.getCurrentIndex();
 		if (currentIndex < galleryService.getListCount() - 1) {
@@ -117,33 +127,33 @@ function($scope, galleryService) {
 portfolioApp.factory('contentService', function() {
 	var currentCompany;
 	var currentWork;
-	
+
 	var setCurrentCompanyAndWork = function(company, work) {
 		currentCompany = company;
 		currentWork = work;
 	};
-	
+
 	var getCurrentCompanyName = function() {
 		if (currentCompany != null) {
 			return currentCompany.name;
 		}
 		return "";
 	};
-	
+
 	var getCurrentWorkName = function() {
 		if (currentWork != null) {
 			return currentWork.name;
 		}
 		return "";
 	};
-	
+
 	var getCurrentWorkYear = function() {
 		if (currentWork != null) {
 			return currentWork.year;
 		}
 		return "";
 	};
-	
+
 	return {
 		setCurrentCompanyAndWork: setCurrentCompanyAndWork,
 		getCurrentCompanyName: getCurrentCompanyName,
@@ -155,47 +165,47 @@ portfolioApp.factory('contentService', function() {
 portfolioApp.factory('galleryService', function() {
 	var figureList = [];
 	var currentIndex = 0;
-	
+
 	var setFigureList = function(list) {
 		figureList = list;
 	}
-	
+
 	var showFigureWithIndex = function(index) {
 		currentIndex = index;
 		var currentFigure = figureList[index];
-		
+
 		var figure = figureList[index];
 		var galleyContent = $("#image-galley-content");
 		galleyContent.html(figure);
-		
+
 		var image = currentFigure.children('img');
 		image.css('width', '');
 		var ratio = image.height() / image.width();
 		image.data('originalWidth', image.width());
 		image.data('ratio', ratio);
-		
+
 		resizeGalleryImage();
-		
+
 		$('#arrow-left').show();
 		$('#arrow-right').show();
-		
+
 		if (currentIndex == 0) {
 			$('#arrow-left').hide();
 		}
-		
+
 		if (currentIndex === figureList.length - 1) {
 			$('#arrow-right').hide();
 		}
 	}
-	
+
 	var getCurrentIndex = function() {
 		return currentIndex;
 	}
-	
+
 	var getListCount = function() {
 		return figureList.length;
 	}
-	
+
 	return {
 		setFigureList: setFigureList,
 		showFigureWithIndex: showFigureWithIndex,
@@ -208,15 +218,15 @@ function resizeGalleryImage() {
 	var image = $("#image-galley-content img");
 	var ratio = image.data("ratio");
 	var originalWidth = image.data('originalWidth');
-	
+
 	var viewportHeight = $(window).height() - 50;
-	
+
 	var arrowWidth = $("#arrow-left").width();
 	var viewportWidth = $(window).width() - arrowWidth * 2 - 80;
-	
+
 	if (originalWidth > viewportWidth || originalWidth * ratio > viewportHeight) {
 		var viewportRatio = viewportHeight / viewportWidth;
-		
+
 		if (viewportRatio > ratio) {
 			image.width(viewportWidth);
 			image.height(Math.floor(image.width() * ratio));
@@ -230,7 +240,7 @@ function resizeGalleryImage() {
 
 $(window).resize(function() {
 	resizeGalleryImage();
-	
+
 	var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
     if (viewportWidth > 780) {
 	    $("#sidebar").show();
