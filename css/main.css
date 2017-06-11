@@ -306,6 +306,29 @@ a:hover {
 	margin: 20px;
 }
 
+/* Image Gallery */
+
+.image-grid {
+  margin: 16px 0;
+}
+
+.image-grid > li {
+  display: inline-block;
+}
+
+.image-grid > li img {
+  cursor: pointer;
+}
+
+.viewer-container {
+  background-color: rgba(0,0,0,.8) !important;
+}
+
+.viewer-title {
+  font-size: 16px !important;
+  line-height: 1.4em !important;
+}
+
 .contribution-label {
 	display: block;
 	font-size: 13px;
